@@ -12,7 +12,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Drawer = createDrawerNavigator();
 
-function AppDrawer() {
+function HomeScreen() {
   return (
     <Drawer.Navigator initialRouteName="Events">
       <Drawer.Screen
@@ -40,8 +40,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
-        <AppDrawer />
-        <Stack.Navigator initialRouteName="Events">
+        <Stack.Navigator initialRouteName="Home">
           <Stack.Group  options={({ navigation }) => ({
             title: 'OTF',
             headerLeft: () => (
@@ -50,7 +49,7 @@ export default function App() {
               </TouchableOpacity>
             )
           })}>
-            <Stack.Screen name="Events" component={EventListScreen} />
+            <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
             <Stack.Screen name="PostScreen" component={PostScreen} />
           </Stack.Group>
         </Stack.Navigator>
