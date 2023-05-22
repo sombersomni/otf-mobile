@@ -1,50 +1,47 @@
 import React from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
-// import { ListItem, Text } from '@rneui/themed';
+import { StyleSheet, View, FlatList, TouchableOpacity} from 'react-native';
+import { ListItem, Text } from '@rneui/themed';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const events = [
-  {
-    name: 'Event 1',
-    datetime: '2023-05-21T10:00:00',
-    user: 'John Doe',
-  },
-  {
-    name: 'Event 2',
-    datetime: '2023-05-22T14:30:00',
-    user: 'Jane Smith',
-  },
-  // Add more events as needed
-];
+import MainHeader from './components/Header';
+import EventListScreen from './components/screens/EventListScreen';
 
-// const renderItem = ({ item }) => (
-//   <ListItem bottomDivider>
-//     <ListItem.Content>
-//       <ListItem.Title>{item.name}</ListItem.Title>
-//       <ListItem.Subtitle>
-//         {item.datetime}
-//       </ListItem.Subtitle>
-//       <ListItem.Subtitle>{item.user}</ListItem.Subtitle>
-//     </ListItem.Content>
-//   </ListItem>
-// );
+export function PostScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Post</Text>
+    </View>
+  );
+}
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text h3>List of Events</Text>
-      <FlatList
-        data={events}
-        renderItem={() => null}
-        keyExtractor={(item) => item.name}
-      />
+    <View style={styles.main}>
+      {/* <MainHeader title={"OTF"} /> */}
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="TodoList">
+          <Stack.Screen name="EventListScreen" component={EventListScreen} />
+          <Stack.Screen name="PostScreen" component={PostScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: '#fff',
+    justifyContent: "flex-start"
+  },
   container: {
     flex: 1,
-    padding: 16,
+    flexDirection: "column",
     backgroundColor: '#fff',
-  }
+    justifyContent: "flex-start"
+  },
 });
