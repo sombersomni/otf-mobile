@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Chip, Text } from '@rneui/themed';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const post = {
   photo: 'https://cdn.nba.com/teams/legacy/www.nba.com/bulls/sites/bulls/files/gettyimages-1864269.jpg',
@@ -12,18 +13,21 @@ const post = {
 export default function TemplateScreen() {
   return (
     <View style={styles.container}>
+      <Text h3>Event Name</Text>
       <Image source={{ uri: post.photo }} style={styles.photo} />
-      <Chip
-            title={post.status}
-            type="outline"
-            icon={{
-              name: 'check',
-              type: 'font-awesome',
-              size: 20,
-              color: 'green',
-            }}
-            containerStyle={{ marginVertical: 15 }}
-          />
+      <TouchableOpacity>
+        <Chip
+              title="Template Settings"
+              type="outline"
+              icon={{
+                name: 'gear',
+                type: 'font-awesome',
+                size: 20,
+                color: '#cccccc',
+              }}
+              containerStyle={{ marginVertical: 15 }}
+            />
+      </TouchableOpacity>
     </View>
   );
 }

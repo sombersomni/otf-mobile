@@ -10,6 +10,7 @@ import EventListScreen from './components/screens/EventListScreen';
 import EventScreen from './components/screens/EventScreen';
 import TemplateListScreen from './components/screens/TemplateListScreen';
 import TemplateScreen from './components/screens/TemplateScreen';
+import AddTemplateScreen from './components/screens/AddTemplateScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -48,6 +49,7 @@ export default function App() {
             <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
             <Stack.Screen name="EventScreen" component={EventScreen} />
             <Stack.Screen name="TemplateScreen" component={TemplateScreen} />
+            <Stack.Screen name="AddTemplateScreen" component={AddTemplateScreen} />
           </Stack.Group>
         </Stack.Navigator>
       </NavigationContainer>
