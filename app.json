@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "OTFMobile",
-    "slug": "OTFMobile",
+    "slug": "otf-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "36ef5bff-616d-4ff7-b421-20769eefe71f"
+      }
+    },
+    "owner": "sombersomni"
   }
 }
