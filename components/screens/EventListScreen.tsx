@@ -57,7 +57,7 @@ const EventItem = (
 
 export default function EventListScreen({ navigation }) {
   const handleNavigation = () => {
-    navigation.navigate("PostScreen");
+    navigation.navigate("EventScreen");
   };
   return (
     <View style={styles.container}>

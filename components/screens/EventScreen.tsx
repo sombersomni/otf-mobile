@@ -9,7 +9,7 @@ const post = {
   status: 'Complete'
 };
 
-export default function PostScreen() {
+export default function EventScreen() {
   return (
     <View style={styles.container}>
       <Image source={{ uri: post.photo }} style={styles.photo} />

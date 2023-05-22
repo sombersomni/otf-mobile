@@ -3,12 +3,13 @@ import { StyleSheet, View } from 'react-native';
 import { Icon } from '@rneui/themed';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
-import EventListScreen from './components/screens/EventListScreen.tsx';
-import PostScreen from './components/screens/PostScreen';
-
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import EventListScreen from './components/screens/EventListScreen';
+import EventScreen from './components/screens/EventScreen';
+import TemplateListScreen from './components/screens/TemplateListScreen';
+import TemplateScreen from './components/screens/TemplateScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -16,20 +17,15 @@ function HomeScreen() {
   return (
     <Drawer.Navigator initialRouteName="Events">
       <Drawer.Screen
-        name="Events"
+        name="EventListScreen"
         component={EventListScreen}
         options={{ drawerLabel: 'Events' }}
       />
-      {/* <Drawer.Screen
-        name="Notifications"
-        component={Notifications}
-        options={{ drawerLabel: 'Updates' }}
-      />
       <Drawer.Screen
-        name="Profile"
-        component={Profile}
-        options={{ drawerLabel: 'Profile' }}
-      /> */}
+        name="TemplateListScreen"
+        component={TemplateListScreen}
+        options={{ drawerLabel: 'Templates' }}
+      />
     </Drawer.Navigator>
   );
 }
@@ -41,7 +37,7 @@ export default function App() {
     <View style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Group options={({ navigation }: any) => ({
+          <Stack.Group options={({ navigation }) => ({
             title: 'OTF',
             headerLeft: () => (
               <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
@@ -50,7 +46,8 @@ export default function App() {
             )
           })}>
             <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
-            <Stack.Screen name="PostScreen" component={PostScreen} />
+            <Stack.Screen name="EventScreen" component={EventScreen} />
+            <Stack.Screen name="TemplateScreen" component={TemplateScreen} />
           </Stack.Group>
         </Stack.Navigator>
       </NavigationContainer>
