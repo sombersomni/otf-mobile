@@ -5,9 +5,13 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
 import { templates } from '../../data/dummy';
 
-export default function TemplateScreen({ route }) {
+export default function TemplateScreen({ route, navigation }) {
   const { id } = route.params;
   const { src, status } = templates.find(t => t.id === id);
+
+  const handleTemplateSettingsScreenNavigation = () => {
+    navigation.navigate("TemplateSettingsScreen")
+  }
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ 
       alignItems: 'center',
@@ -35,6 +39,7 @@ export default function TemplateScreen({ route }) {
         <Button
           title="Template Settings"
           type="outline"
+          onPress={handleTemplateSettingsScreenNavigation}
           icon={{
             name: 'gear',
             type: 'font-awesome',
