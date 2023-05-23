@@ -6,7 +6,7 @@ const post = {
   photo: 'https://cdn.nba.com/teams/legacy/www.nba.com/bulls/sites/bulls/files/gettyimages-1864269.jpg',
   caption: 'MJ with the slam dunk',
   author: 'John Doe',
-  status: 'Complete'
+  status: 'completed'
 };
 
 export default function EventScreen() {
@@ -16,16 +16,16 @@ export default function EventScreen() {
       <Text h3>{post.caption}</Text>
       <Text style={styles.author}>Reviewed by {post.author}</Text>
       <Chip
-            title={post.status}
-            type="outline"
-            icon={{
-              name: 'check',
-              type: 'font-awesome',
-              size: 20,
-              color: 'green',
-            }}
-            containerStyle={{ marginVertical: 15 }}
-          />
+        title={post.status}
+        type="outline"
+        icon={{
+          name: 'check',
+          type: 'font-awesome',
+          size: 20,
+          color: 'green',
+        }}
+        containerStyle={{ marginVertical: 15 }}
+      />
     </View>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, FlatList, TouchableOpacity} from 'react-native';
-import { ListItem } from '@rneui/themed';
+import { Chip, ListItem } from '@rneui/themed';
 
 // Dummy Data
 const events = [
@@ -8,27 +8,32 @@ const events = [
     name: 'Event 1',
     datetime: '2023-05-21T10:00:00',
     user: 'John Doe',
+    status: 'completed'
   },
   {
     name: 'Event 2',
     datetime: '2023-05-22T14:30:00',
     user: 'Jane Smith',
+    status: 'failed'
   },
   {
     name: 'Event 3',
     datetime: '2023-05-21T10:00:00',
     user: 'John Doe',
+    status: 'completed'
   },
   {
     name: 'Event 4',
     datetime: '2023-05-22T14:30:00',
-    user: 'Jane Smith'
+    user: 'Jane Smith',
+    status: 'scheduled'
   },
 ];
 
 interface EventItem {
   name: string;
   datetime: string;
+  status: string;
   user: string;
 }
 interface EventItemProps {
@@ -38,18 +43,29 @@ interface EventItemProps {
 
 const EventItem = (
   {
-    item: { name, user, datetime },
+    item: { name, datetime, status, user },
     handleNavigation
   }: EventItemProps
 ) => (
   <TouchableOpacity onPress={handleNavigation}>
     <ListItem bottomDivider>
       <ListItem.Content>
-        <ListItem.Title>{name}</ListItem.Title>
-        <ListItem.Subtitle>
-          {new Date(Date.parse(datetime)).toDateString()}
-        </ListItem.Subtitle>
-        <ListItem.Subtitle>{user}</ListItem.Subtitle>
+        <View style={styles.listItem}>
+          <View style={styles.listItemLeft}>
+            <ListItem.Title>{name}</ListItem.Title>
+            <ListItem.Subtitle>
+              {new Date(Date.parse(datetime)).toDateString()}
+            </ListItem.Subtitle>
+          </View>
+          <View style={styles.listItemRight}>
+            <Chip
+              title={status}
+              type="outline"
+              size="sm"
+              containerStyle={{ marginVertical: 15 }}
+            />
+          </View>
+        </View>
       </ListItem.Content>
     </ListItem>
   </TouchableOpacity>
@@ -62,7 +78,6 @@ export default function EventListScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
-        style={styles.list}
         data={events}
         renderItem={({item}) => <EventItem item={item} handleNavigation={handleNavigation} />}
         keyExtractor={(item) => item.name}
@@ -78,7 +93,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: "flex-start"
   },
-  list: {
-
+  listItem: {
+    flex: 1,
+    flexDirection: "row"
+  },
+  listItemLeft: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "flex-start"
+  },
+  listItemRight: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "flex-end"
   }
 });
