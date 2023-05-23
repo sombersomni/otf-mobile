@@ -1,13 +1,10 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { Button, Card, Chip, Text } from '@rneui/themed';
+import { Button, Card, Chip, Divider, Text } from '@rneui/themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const templates = [
-  { id: 1, src: "https://i.ebayimg.com/images/g/2qIAAOSwgDFj6zme/s-l1600.jpg", eventType: "Game Score", status: "Active"},
-  { id: 2, src: "https://i.ebayimg.com/images/g/izgAAOSwGJ1kEw7N/s-l1600.jpg", eventType: "MVP", status: "Inactive"},
-  { id: 3, src: "https://m.media-amazon.com/images/I/714HVJ+rM5L._AC_SY679_.jpg", eventType: "Starting Five", status: "Active" }
-];
+// Dummy data
+import { templates } from '../../data/dummy';
 
 function TemplateListScreen({ navigation }) {
 
@@ -15,8 +12,10 @@ function TemplateListScreen({ navigation }) {
     navigation.navigate('AddTemplateScreen')
   }
 
-  const handleTemplateScreenNavigation = () => {
-    navigation.navigate('TemplateScreen')
+  const handleTemplateScreenNavigation = (id: number) => {
+    navigation.navigate('TemplateScreen', {
+      id
+    })
   }
 
   return (
@@ -39,7 +38,6 @@ function TemplateListScreen({ navigation }) {
           raised
           titleStyle={{ color: 'rgba(0, 100, 200, 1)' }}
           containerStyle={{
-            width: 200,
             marginHorizontal: 50,
             marginVertical: 10,
           }}
@@ -48,10 +46,11 @@ function TemplateListScreen({ navigation }) {
       <ScrollView>
         {templates.map(({ id, src, eventType, status }) => (
           <View key={id} style={styles.scrollContainer}>
-            <TouchableOpacity onPress={handleTemplateScreenNavigation}>
+            <TouchableOpacity onPress={() => handleTemplateScreenNavigation(id)}>
               <Card wrapperStyle={styles.imageCard}>
-                <Card.Image source={{ uri: src }} style={{ padding: 0 }} />
-                <Text h4>{eventType}</Text>
+                <Card.Image source={{ uri: src }} resizeMode='contain' style={{ padding: 0, width: 200, height: 200 }} />
+                <Card.Title h4>{eventType}</Card.Title>
+                <Card.Divider />
                 <Chip
                     color={status === 'Active' ? 'success' : 'error'}
                     title={status}
@@ -86,7 +85,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     padding: 5,
     alignItems: "center",
-    width: 250
   },
   options: {
     justifyContent: "center",

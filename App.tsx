@@ -20,12 +20,12 @@ function HomeScreen() {
       <Drawer.Screen
         name="EventListScreen"
         component={EventListScreen}
-        options={{ drawerLabel: 'Events' }}
+        options={{ drawerLabel: 'Events', headerTitle: 'Events' }}
       />
       <Drawer.Screen
         name="TemplateListScreen"
         component={TemplateListScreen}
-        options={{ drawerLabel: 'Templates' }}
+        options={{ drawerLabel: 'Templates', headerTitle: 'Templates' }}
       />
     </Drawer.Navigator>
   );
@@ -46,7 +46,7 @@ export default function App() {
               </TouchableOpacity>
             )
           })}>
-            <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
+            <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
             <Stack.Screen name="EventScreen" component={EventScreen} />
             <Stack.Screen name="TemplateScreen" component={TemplateScreen} />
             <Stack.Screen name="AddTemplateScreen" component={AddTemplateScreen} />

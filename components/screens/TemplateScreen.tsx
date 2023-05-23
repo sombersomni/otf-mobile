@@ -1,34 +1,50 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { Chip, Text } from '@rneui/themed';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Button, Chip, Divider, Text } from '@rneui/themed';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-const post = {
-  photo: 'https://cdn.nba.com/teams/legacy/www.nba.com/bulls/sites/bulls/files/gettyimages-1864269.jpg',
-  caption: 'MJ with the slam dunk',
-  author: 'John Doe',
-  status: 'Complete'
-};
+import { templates } from '../../data/dummy';
 
-export default function TemplateScreen() {
+export default function TemplateScreen({ route }) {
+  const { id } = route.params;
+  const { src, status } = templates.find(t => t.id === id);
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{ 
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
       <Text h3>Event Name</Text>
-      <Image source={{ uri: post.photo }} style={styles.photo} />
+      <Image source={{ uri: src }} style={styles.photo} resizeMode="contain"/>
+  
+      <Divider />
+      <View style={styles.info}>
+        <View style={styles.infoLeft}>
+          <Text>Next Scheduled Event:</Text>
+          <Text>Jan 10, 2024</Text>
+        </View>
+        <View style={styles.infoRight}>
+          <Chip
+            size="sm"
+            title={status}
+            type="outline"
+            containerStyle={{ marginVertical: 15 }}
+          />
+        </View>
+      </View>
       <TouchableOpacity>
-        <Chip
-              title="Template Settings"
-              type="outline"
-              icon={{
-                name: 'gear',
-                type: 'font-awesome',
-                size: 20,
-                color: '#cccccc',
-              }}
-              containerStyle={{ marginVertical: 15 }}
-            />
+        <Button
+          title="Template Settings"
+          type="outline"
+          icon={{
+            name: 'gear',
+            type: 'font-awesome',
+            size: 20,
+            color: '#cccccc',
+          }}
+          containerStyle={{ marginVertical: 15, marginBottom: 30 }}
+        />
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -37,8 +53,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   photo: {
     width: '100%',
@@ -50,4 +64,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 8,
   },
+  info: {
+    flex: 1,
+    flexDirection: "row",
+    width: '100%',
+  },
+  infoLeft: {
+    flex: 2,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start"
+  },
+  infoRight: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-end"
+  }
 });
