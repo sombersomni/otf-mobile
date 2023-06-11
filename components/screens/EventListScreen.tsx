@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, FlatList, TouchableOpacity} from 'react-native';
 import { Chip, ListItem } from '@rneui/themed';
+import GameSchedules from '../GameSchedules';
 
 // Dummy Data
 const events = [
@@ -77,11 +78,12 @@ export default function EventListScreen({ navigation }) {
   };
   return (
     <View style={styles.container}>
-      <FlatList
+      {/* <GameSchedules /> */}
+      {/* <FlatList
         data={events}
         renderItem={({item}) => <EventItem item={item} handleNavigation={handleNavigation} />}
         keyExtractor={(item) => item.name}
-      />
+      /> */}
     </View>
   );
 }
