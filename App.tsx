@@ -6,22 +6,23 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import EventListScreen from './components/screens/EventListScreen';
+import EventListScreen from './components/EventList';
 import EventScreen from './components/screens/EventScreen';
 import TemplateListScreen from './components/screens/TemplateListScreen';
 import TemplateScreen from './components/screens/TemplateScreen';
 import AddTemplateScreen from './components/screens/AddTemplateScreen';
 import TemplateSettingsComponent from './components/screens/TemplateSettingsScreen';
+import HomeScreen from './components/screens/HomeScreen';
 
 const Drawer = createDrawerNavigator();
 
-function HomeScreen() {
+function ScreenController() {
   return (
-    <Drawer.Navigator initialRouteName="Events">
+    <Drawer.Navigator initialRouteName="Home">
       <Drawer.Screen
-        name="EventListScreen"
-        component={EventListScreen}
-        options={{ drawerLabel: 'Events', headerTitle: 'Events' }}
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ drawerLabel: 'Home', headerTitle: 'Home' }}
       />
       <Drawer.Screen
         name="TemplateListScreen"
@@ -47,7 +48,7 @@ export default function App() {
               </TouchableOpacity>
             )
           })}>
-            <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Home" component={ScreenController} options={{ headerShown: false }} />
             <Stack.Screen name="EventScreen" component={EventScreen} />
             <Stack.Screen name="TemplateScreen" component={TemplateScreen} />
             <Stack.Screen name="AddTemplateScreen" component={AddTemplateScreen} />
