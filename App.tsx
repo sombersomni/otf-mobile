@@ -7,7 +7,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Colors, Typography, Spacings } from 'react-native-ui-lib'
 
-import EventListScreen from './components/EventList';
+// import EventListScreen from './components/EventList';
 import EventScreen from './components/screens/EventScreen';
 import TemplateListScreen from './components/screens/TemplateListScreen';
 import TemplateScreen from './components/screens/TemplateScreen';
@@ -26,6 +26,7 @@ Colors.loadColors({
 });
 
 // You can use font family to load a custom font
+// Font: Termina-Black
 Typography.loadTypographies({
   heading: {fontSize: 36, fontWeight: '600'},
   subheading: {fontSize: 28, fontWeight: '500'},
