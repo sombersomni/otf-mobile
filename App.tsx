@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Colors, Typography, Spacings } from 'react-native-ui-lib'
 
 import EventListScreen from './components/EventList';
 import EventScreen from './components/screens/EventScreen';
@@ -14,6 +15,30 @@ import AddTemplateScreen from './components/screens/AddTemplateScreen';
 import TemplateSettingsComponent from './components/screens/TemplateSettingsScreen';
 import HomeScreen from './components/screens/HomeScreen';
 
+// Theme Manager
+Colors.loadColors({
+  primaryColor: '#2364AA',
+  secondaryColor: '#81C3D7',
+  textColor: '##221D23',
+  errorColor: '#E63B2E',
+  successColor: '#ADC76F',
+  warnColor: '##FF963C'
+});
+
+// You can use font family to load a custom font
+Typography.loadTypographies({
+  heading: {fontSize: 36, fontWeight: '600'},
+  subheading: {fontSize: 28, fontWeight: '500'},
+  body: {fontSize: 18, fontWeight: '400'}
+});
+
+Spacings.loadSpacings({
+  page: 20,
+  card: 12,
+  gridGutter: 16
+});
+
+// Navigation
 const Drawer = createDrawerNavigator();
 
 function ScreenController() {
