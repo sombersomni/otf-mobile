@@ -52,7 +52,7 @@ const ScheduleItem = ({ item }: ScheduleItemProps) => {
           <Text>{ day }</Text>
         </View>
         <View>
-          <Text>{ `${month}. ${dayOfMonth}`}</Text>
+          <Text>{ `${month} ${dayOfMonth}`}</Text>
         </View>
       </ListItem.Content>
     </ListItem>
