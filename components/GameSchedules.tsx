@@ -1,31 +1,36 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Image, ListItem, Text } from '@rneui/themed';
+import { Image, ListItem, Text } from 'react-native-ui-lib';
 import { parseISODateTime } from '../helpers/date_helpers';
 
 // Dummy Data
 const schedules = [
   {
+    id: 1,
     team: 'Atlanta Hawks',
     logo: 'https://w7.pngwing.com/pngs/367/826/png-transparent-pac-man-philips-arena-atlanta-hawks-indiana-pacers-orlando-magic-atlanta-falcons-text-trademark-logo-thumbnail.png',
     datetime: '2023-05-21T10:00:00',
   },
   {
+    id: 2,
     team: 'Atlanta Hawks',
     logo: 'https://w7.pngwing.com/pngs/367/826/png-transparent-pac-man-philips-arena-atlanta-hawks-indiana-pacers-orlando-magic-atlanta-falcons-text-trademark-logo-thumbnail.png',
     datetime: '2023-05-21T10:00:00',
   },
   {
+    id: 3,
     team: 'Atlanta Hawks',
     logo: 'https://w7.pngwing.com/pngs/367/826/png-transparent-pac-man-philips-arena-atlanta-hawks-indiana-pacers-orlando-magic-atlanta-falcons-text-trademark-logo-thumbnail.png',
     datetime: '2023-05-21T10:00:00',
   },
   {
+    id: 4,
     team: 'Atlanta Hawks',
     logo: 'https://w7.pngwing.com/pngs/367/826/png-transparent-pac-man-philips-arena-atlanta-hawks-indiana-pacers-orlando-magic-atlanta-falcons-text-trademark-logo-thumbnail.png',
     datetime: '2023-05-21T10:00:00',
   },
   {
+    id: 5,
     team: 'Atlanta Hawks',
     logo: 'https://w7.pngwing.com/pngs/367/826/png-transparent-pac-man-philips-arena-atlanta-hawks-indiana-pacers-orlando-magic-atlanta-falcons-text-trademark-logo-thumbnail.png',
     datetime: '2023-05-21T10:00:00',
@@ -45,16 +50,14 @@ const ScheduleItem = ({ item }: ScheduleItemProps) => {
   const { datetime, logo } = item
   const { day, month, dayOfMonth } = parseISODateTime(datetime)
   return (
-    <ListItem bottomDivider>
-      <ListItem.Content style={styles.scheduleContainer}>
-        <Image source={{ uri: logo }} style={styles.photo} />
-        <View>
-          <Text>{ day }</Text>
-        </View>
-        <View>
-          <Text>{ `${month} ${dayOfMonth}`}</Text>
-        </View>
-      </ListItem.Content>
+    <ListItem style={styles.scheduleContainer}>
+      <Image source={{ uri: logo }} width={32} height={32}/>
+      <View>
+        <Text white>{ day }.</Text>
+      </View>
+      <View>
+        <Text white>{ `${month} ${dayOfMonth}`}</Text>
+      </View>
     </ListItem>
   )
 }
@@ -68,7 +71,7 @@ export default function GameSchedules() {
         showsHorizontalScrollIndicator={false}
       >
         {schedules.map(schedule => (
-          <ScheduleItem item={schedule}/>
+          <ScheduleItem key={`schedule-item-${schedule.id}`} item={schedule}/>
         ))}
       </ScrollView>
     </View>
@@ -87,6 +90,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    margin: 10
   },
   photo: {
     width: 38,

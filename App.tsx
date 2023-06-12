@@ -14,6 +14,7 @@ import TemplateScreen from './components/screens/TemplateScreen';
 import AddTemplateScreen from './components/screens/AddTemplateScreen';
 import TemplateSettingsComponent from './components/screens/TemplateSettingsScreen';
 import HomeScreen from './components/screens/HomeScreen';
+import GridListScreen from './components/screens/GridListScreen';
 
 // Theme Manager
 Colors.loadColors({

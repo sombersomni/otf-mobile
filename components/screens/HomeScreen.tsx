@@ -3,6 +3,8 @@ import { StyleSheet, ScrollView, View, ImageBackground } from 'react-native';
 import { Text } from '@rneui/themed';
 import GameSchedules from '../GameSchedules';
 import EventList from '../EventList';
+import { DividingHeader, ScreenHeader } from '../common/Headers';
+import { parseISODateTime } from '../../helpers/date_helpers';
 
 const photo = 'https://media.cnn.com/api/v1/images/stellar/prod/221006042658-02-nba-lebron-james-las-vegas.jpg'
 
@@ -11,22 +13,17 @@ export default function HomeScreen({ navigation }) {
     navigation.navigate("EventScreen");
   };
 
+  const currentDatetime = new Date().toISOString()
+  const { month, dayOfMonth } = parseISODateTime(currentDatetime)
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View>
-        <Text h4>
-          Upcoming Games
-        </Text>
-      </View>
+      <ScreenHeader title="2023-24 Season" subtitle="Upcoming Schedule" />
       <GameSchedules />
       <View style={styles.photoContainer}>
         <ImageBackground source={{ uri: photo }} style={styles.photo} />
       </View>
-      <View>
-        <Text h4>
-          Scheduled Posts
-        </Text>
-      </View>
+      <DividingHeader title="Scheduled Post" formattedDay={`${month} ${dayOfMonth}`} />
       <EventList handleNavigation={handleNavigation} />
     </ScrollView>
   );
@@ -34,12 +31,11 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
     backgroundColor: '#fff',
     justifyContent: 'center',
   },
   photoContainer: {
-    width: 320,
+    width: 'auto',
     height: 320,
   },
   photo: {

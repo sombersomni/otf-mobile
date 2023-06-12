@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
-import { Icon, ListItem, Text } from '@rneui/themed';
-import GameSchedules from './GameSchedules';
+import { Icon, ListItem, Text } from 'react-native-ui-lib';
 import { parseISODateTime } from '../helpers/date_helpers';
 import { useSpring, animated } from '@react-spring/native';
 
@@ -77,32 +76,26 @@ const EventItem = (
 
   return (
     <TouchableOpacity onPress={() => handlePress(id)} key={name}>
-      <ListItem bottomDivider>
-        <ListItem.Content>
-          <View style={styles.listItem}>
-            <View style={styles.listItemLeft}>
-              <View>
-                <Icon
-                  size={16}
-                  name='chevron-down'
-                  type='font-awesome'
-                  solid={false}
-                />
-              </View>
-              <View>
-                <ListItem.Title>{name}</ListItem.Title>
-                <ListItem.Subtitle>
-                  Status: {status}
-                </ListItem.Subtitle>
-              </View>
-            </View>
-            <View style={styles.listItemRight}>
-              <Text>
-                {`${hours}:${minutes} ${meridian}`}
-              </Text>
-            </View>
+      <ListItem>
+        <ListItem.Part left>
+          <View>
+            <Icon
+              size={16}
+              name='chevron-down'
+              type='font-awesome'
+              solid={false}
+            />
           </View>
-        </ListItem.Content>
+          <View>
+            <Text>{name}</Text>
+            <Text> Status: {status} </Text>
+          </View>
+        </ListItem.Part>
+        <ListItem.Part right>
+          <Text>
+            {`${hours}:${minutes} ${meridian}`}
+          </Text>
+        </ListItem.Part>   
       </ListItem>
       {selectedEventId === id && (
         <EventInfo expandAnimation={expandAnimation}/>
